@@ -1,7 +1,11 @@
 <?php
 
-$this->data = $this->model->get_purchases_model()->get_data();
+$this->page = (object) ['title' => 'Spendings'];
 
 ?>
 
-<h1>Spendings</h1>
+<?php include_once('_header.php'); ?>
+
+<h2>Spendings</h2>
+
+<?php include_once('_footer.php'); ?>

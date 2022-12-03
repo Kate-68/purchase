@@ -36,6 +36,12 @@ class Controller {
             case "":
                 switch($_SERVER["REQUEST_METHOD"]) {
                     case "GET":
+                        if (LOGGED_IN) {
+                            // Redirect to spendings
+                            header("Location: /spendings");
+                            die();
+                        }
+                        
                         $this->viewName = "homepage";
                         break;
                     default:
@@ -55,7 +61,7 @@ class Controller {
                         $userModel->login();
 
                         // Redirect to spendings
-                        header("Location: /spendings.php");
+                        header("Location: /spendings");
                         die();
                     default:
                         $this->viewName = "not-found";
@@ -70,12 +76,11 @@ class Controller {
                         break;
                     case "POST":
                         // Register new user
-                        require_once("user.php");
                         $userModel = $this->model->get_user_model();
                         $userModel->register();
 
                         // Redirect to login page
-                        header("Location: /login.php");
+                        header("Location: /login");
                         die();
                     default:
                         $this->viewName = "not-found";
