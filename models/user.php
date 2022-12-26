@@ -7,10 +7,7 @@ class UserModel
     }
 
     public function get_data()
-    {
-        // TODO: Get user count
-        return (object) array("userCount" => 1000);
-    }
+    { }
 
     public function login()
     {
@@ -142,6 +139,9 @@ class UserModel
             // Execute
             if (MYSQL->query($sql) === FALSE) {
                 echo "Error: " . $sql . "<br>";
+                // Close connection
+                MYSQL->close();
+                die();
             }
 
             // Close connection
@@ -152,7 +152,8 @@ class UserModel
     }
 
     private function handle_errors($errors) {
-        echo ("There were errors... oops - " . serialize($errors));
+        $_SESSION["errors"] = $errors;
+        header("Location: " . $_SERVER["REQUEST_URI"]);
         die();
     }
 }

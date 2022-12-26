@@ -1,137 +1,246 @@
 body {
-    padding: 0 5%;
-  }
-  
-  h1 {
-    font-size: 42px;
-  }
-  
-  h2 {
-    font-size: 24px;
-    margin-bottom: 30px;
-  }
-  
-  p {
-    line-height: 1.5;
-  }
-  
-  input[type=text], input[type=number], input[type=password], select {
-    width: 250px;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-  }
-  
-  input[type=submit] {
-    display: block;
-    width: 250px;
-    background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  input[type=submit]:hover {
-    background-color: #45a049;
-  }
-  
-  label {
-    display: block;
-  }
-  
-  table {
-    font-family: Arial, Helvetica, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-  }
-  
-  table td, table th {
-    border: 1px solid #ddd;
-    padding: 8px;
-  }
-  
-  table tr:nth-child(even){background-color: #f2f2f2;}
-  
-  table tr:hover {background-color: #ddd;}
-  
-  table th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: #04AA6D;
-    color: white;
-  }
-  
-  .web-wrap {
-    max-width: 1170px;
-    margin: 40px auto;
-  }
-  
-  .header {
-    background-color: #f1f1f1;
-    padding: 20px;
-    text-align: center;
-  }
-  
-  .header-item {
-    display: inline-block;
-    width: 30%;
-    }
-  
-  .topnav {
-    background-color: #333;
-  }
-  
-  .topnav-inset {
-    max-width: 1170px;
-    margin: 0 auto;
-  }
-  
-  .topnav-inset-inset {
-    float: right;
-    font-size: 0;
-  }
-  
-  .topnav-inset-inset a, .topnav-inset-inset div {
-    display: inline-block;
-    color: #f2f2f2;
-    text-align: center;
-    padding: 14px 25px;
-    text-decoration: none;
-    font-size: 16px;
-  }
-  
-  .topnav-inset-inset a:hover {
-    background-color: #ddd;
-    color: #000;
-  }
-  
-  .field-error {
-    display: block;
-    color: red;
-    font-weight: bold;
-  }
-  
-  .footer {
-    margin: 0 auto;
-    padding: 60px 0 30px 0;
-    max-width: 1170px;
-  }
-  
-  .clear {
-    clear: both;
-    display: block;
-    float: none;
-    font-size: 0;
-    height: 0;
-    line-height: 0;
-    margin: 0;
-    padding: 0;
-    width: 0;
-  }
+  padding: 0 5%;
+  min-height: 800px;
+  min-width: 800px;
+}
+
+h1 {
+  font-size: 42px;
+}
+
+h2 {
+  font-size: 24px;
+  margin-bottom: 30px;
+}
+
+p {
+  line-height: 1.5;
+}
+
+input[type=text], input[type=number], input[type=date], input[type=password], select {
+  width: 250px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  font-weight: bold;
+  display: block;
+  width: 250px;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+label {
+  display: block;
+}
+
+table {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table td, table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+table tr:nth-child(even){background-color: #f2f2f2;}
+
+table tr:hover {background-color: #ddd;}
+
+table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: darkslategrey;
+  color: white;
+}
+
+.web-wrap {
+  max-width: 1170px;
+  margin: 40px auto;
+}
+
+.header {
+  background-color: #f1f1f1;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.header a:link {
+  color: black;
+  text-decoration: none;
+}
+
+.header a:visited {
+  color: black;
+}
+
+.field-error {
+  display: block;
+  color: red;
+  font-weight: bold;
+}
+
+.footer {
+  margin: 0 auto;
+  padding: 60px 0 30px 0;
+}
+
+.clear {
+  clear: both;
+  display: block;
+  float: none;
+  font-size: 0;
+  height: 0;
+  line-height: 0;
+  margin: 0;
+  padding: 0;
+  width: 0;
+}
+
+.purchase-form {
+  display: inline;
+}
+
+.purchase-form input[type=submit] {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  background-color: #4CAF50;
+  color: white;
+  padding: 4px 4px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.purchase-form input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+.spendings-overview table {
+  margin-bottom: 0.5em;
+}
+
+.spendings-overview td {
+  border: none;
+  text-align: left;
+  font-weight: bold;
+}
+
+.spendings-overview tr:hover {
+  background-color: white;
+}
+
+.spendings-overview a, .spendings-overview a:visited, .spendings-overview a:link {
+  color: white;
+  text-decoration: none;
+}
+
+.menu-button a:visited {
+  color: white;
+}
+
+#button-link {
+  background-color: #4CAF50;
+  text-align: center;
+  border-radius: 0.3333em;
+}
+
+#button-link:hover {
+  background-color: #45a049;
+}
+
+.spendings-action {
+  align-content: center;
+}
+
+.spendings-action form {
+  width: fit-content;
+  display: inline-block;
+}
+
+.spendings-action input {
+  display: inline-block;
+  margin: 0px;
+  position: relative;
+  left: 25%;
+  height: 2em;
+  width: 2em;
+  background-color: #4CAF50;
+  color: white;
+  padding: 4px 4px 4px 4px;
+  border: none;
+  border-radius: 0.3333em;
+  cursor: pointer;
+}
+
+.top-menu {
+  background-color: darkslategrey;
+  color: white;
+  width: fill;
+  padding: 0.5em;
+  font-weight: bold;
+  font-size: large;
+}
+
+.top-menu td {
+  border: none;
+}
+
+.top-menu tr:hover {
+  background-color: #2f4f4f;
+}
+
+.menu-button {
+  background-color: #4CAF50;
+  text-align: center;
+  border-radius: 0.3333em;
+  color: white;
+  text-decoration: none;
+  padding: 8px 30% 8px 30%;
+}
+
+.menu-button:hover {
+  background-color: #45a049;
+}
+
+.spendings-action input {
+  font-weight: normal;
+}
+
+h2 {
+  font-size: xx-large;
+}
+
+.paging {
+  width: 100%;
+  text-align: center;
+}
+
+.header div {
+  display: inline-block;
+  margin: 0em 2em 0em 2em;
+}
+
+.header img {
+  width: 5em;
+}

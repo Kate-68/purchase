@@ -21,18 +21,9 @@ class Controller {
         // $_SERVER["REQUEST_METHOD"] // POST / GET / DELETE
 
         $cleaned_uri = $this->cleanup_uri($_SERVER["REQUEST_URI"]);
+        $switch_uri = strtok($cleaned_uri, "?");
 
-        if($_SERVER["REQUEST_METHOD"] == "DELETE" && preg_match("/^\/purchases\/\d+$/", $cleaned_uri)) {
-            // Remove a purchase
-            $purchaseModel = $this->model->get_purchase_model();
-            $purchaseModel->removePurchase();
-
-            // Redirect to spendings page
-            header("Location: /spendings.php");
-            die();
-        }
-
-        switch($cleaned_uri) {
+        switch($switch_uri) {
             case "":
                 switch($_SERVER["REQUEST_METHOD"]) {
                     case "GET":
@@ -92,6 +83,21 @@ class Controller {
                     case "GET":
                         $this->viewName = "spendings";
                         break;
+                    case "POST":
+                        switch($_POST["action"]) {
+                            case "delete":
+                                // Remove a purchase
+                                $purchaseModel = $this->model->get_purchase_model();
+                                $purchaseModel->removePurchase();
+                                
+                                
+                                header("Location: /spendings");
+                                die();
+                            default:
+                                $this->viewName = "not-found";
+                                break;
+                        }
+                        break;
                     default:
                         $this->viewName = "not-found";
                         break;
@@ -108,13 +114,25 @@ class Controller {
                         $purchaseModel->makePurchase();
 
                         // Redirect to spendings page
-                        header("Location: /spendings.php");
+                        header("Location: /spendings");
                         die();
                     default:
                         $this->viewName = "not-found";
                         break;    
                 }
                 break;
+            case "/logout":
+                switch($_SERVER["REQUEST_METHOD"]) {
+                    case "GET":
+                        session_destroy();
+                        
+                        // Redirect to homepage
+                        header("Location: /");
+                        die();
+                    default:
+                        $this->viewName = "not-found";
+                        break;
+                }
             default:
                 $this->viewName = "not-found";
                 break;

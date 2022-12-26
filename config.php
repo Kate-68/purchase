@@ -10,14 +10,10 @@ define('SITE_DOMAIN', 'https://localhost:8000');
 define('SITE_LINK', SITE_DOMAIN . '/');
 
 // DB
-// define('DB_HOST', 'remotemysql.com:3306');
-// define('DB_USER', 'QS531XXk3N');
-// define('DB_PASS', 'nyUINwWYzT');
-// define('DB_NAME', 'QS531XXk3N');
-define('DB_HOST', 'localhost:3306');
-define('DB_USER', 'root');
-define('DB_PASS', '');
-define('DB_NAME', 'purchases');
+define('DB_HOST', getenv("DB_HOST") ? getenv("DB_HOST") : 'localhost:3306');
+define('DB_USER', getenv("DB_USER") ? getenv("DB_USER") : 'root');
+define('DB_PASS', getenv("DB_PASS") ? getenv("DB_PASS") : '');
+define('DB_NAME', getenv("DB_NAME") ? getenv("DB_NAME") : 'purchases');
 
 // Connect to database
 $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
@@ -41,7 +37,8 @@ if(array_key_exists('loggedin', $_SESSION)) {
 
     // Check if result exists
     if($result) {
-        $logged = true;
+      $logged = true;
+      define('LOGGED_NAME', $result['user_name']);
     }
     else {
         $logged = false;    
