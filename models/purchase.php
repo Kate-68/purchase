@@ -8,6 +8,7 @@ class PurchaseModel {
 
     public function get_data()
     {
+        global $mysqli;
         $page = 1;
         if (property_exists((object) $_GET, "page") && is_numeric($_GET["page"])) {
             $page = $_GET["page"];
@@ -17,7 +18,7 @@ class PurchaseModel {
         $sql = "SELECT id, purchase_date, purchase_name, purchase_amount FROM purchases_purchase WHERE user_id='" . $_SESSION['id'] . "' ORDER BY purchase_date DESC, id DESC LIMIT 10 OFFSET " . ($page - 1) * 10;
     
         // Get result
-        $result = MYSQL->query($sql)->fetch_all();
+        $result = $mysqli->query($sql)->fetch_all();
 
         $map_purchases_to_data = function(array $value): array {
             return array(
@@ -40,7 +41,7 @@ class PurchaseModel {
             GROUP BY user_id";
     
         // Get result
-        $sum = MYSQL->query($sql)->fetch_assoc();
+        $sum = $mysqli->query($sql)->fetch_assoc();
         if ($sum == NULL)
             $sum = 0;
         else
@@ -55,7 +56,7 @@ class PurchaseModel {
             GROUP BY user_id";
             
         // Get result
-        $last_sum = MYSQL->query($sql)->fetch_assoc();
+        $last_sum = $mysqli->query($sql)->fetch_assoc();
         if ($last_sum == NULL)
             $last_sum = 0;
         else
@@ -67,7 +68,7 @@ class PurchaseModel {
             WHERE user_id='" . $_SESSION['id'] . "' GROUP BY user_id";
             
         // Get result
-        $count = MYSQL->query($sql)->fetch_assoc();
+        $count = $mysqli->query($sql)->fetch_assoc();
         if ($count == NULL)
             $count = 0;
         else
@@ -85,6 +86,7 @@ class PurchaseModel {
     }
 
     public function makePurchase() {
+        global $mysqli;
         echo ('Parameters: ' . serialize($_POST) . '<br>');
 
         $fields = [
@@ -125,18 +127,19 @@ class PurchaseModel {
             $sql = "INSERT INTO purchases_purchase (purchase_date, purchase_name, purchase_amount, user_id) VALUES ('" . $fields['purchase_date'] . "', '" . $fields['purchase_name'] . "', '" . $fields['purchase_amount'] . "', '" . $_SESSION['id'] . "')";
 
             // Execute
-            if (MYSQL->query($sql) === FALSE) {
+            if ($mysqli->query($sql) === FALSE) {
                 echo "Error: " . $sql . "<br>";
                 // Close connection
-                MYSQL->close();
+                $mysqli->close();
                 die();
             }
 
             // Close connection
-            MYSQL->close();
+            $mysqli->close();
         }
     }
     public function removePurchase() {
+        global $mysqli;
         echo ('Parameters: ' . var_dump($_POST) . '<br>');
 
         $fields = [
@@ -171,15 +174,15 @@ class PurchaseModel {
             $sql = "DELETE FROM purchases_purchase WHERE id = '" . $fields['purchase_id'] . "' AND user_id = " . $_SESSION['id'];
 
             // Execute
-            if (MYSQL->query($sql) === FALSE) {
+            if ($mysqli->query($sql) === FALSE) {
                 echo "Error: " . $sql . "<br>";
                 // Close connection
-                MYSQL->close();
+                $mysqli->close();
                 die();
             }
 
             // Close connection
-            MYSQL->close();
+            $mysqli->close();
         }
     }
     private function handle_errors($errors) {

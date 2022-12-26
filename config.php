@@ -54,7 +54,7 @@ define('LOGGED_IN', $logged);
 /**
  * Summary MySQL connection variable
  */
-define('MYSQL', $mysqli);
+define('$mysqli', $mysqli);
 
 $site = (object) ['title' => 'Purchases', 'link' => SITE_LINK];
 define('SITE', $site);

@@ -11,6 +11,7 @@ class UserModel
 
     public function login()
     {
+        global $mysqli;
         echo ('Parameters: ' . serialize($_POST) . '<br>');
 
         $fields = [
@@ -51,7 +52,7 @@ class UserModel
         if (count($errors) == 0) {
             // SQL statement
             $sql = "SELECT * FROM purchases_user WHERE user_email='" . $fields['user_email'] . "'";
-            $result = MYSQL->query($sql)->fetch_assoc();
+            $result = $mysqli->query($sql)->fetch_assoc();
 
             // No user found
             if(empty($result) || !password_verify($fields['user_password'], $result['user_password'])) {
@@ -65,7 +66,7 @@ class UserModel
             }
 
             // Close connection
-            MYSQL->close();
+            $mysqli->close();
         }
         
         if(count($errors) != 0) {
@@ -75,6 +76,7 @@ class UserModel
 
     public function register()
     {
+        global $mysqli;
         echo ('Parameters: ' . serialize($_POST) . '<br>');
 
         $fields = [
@@ -107,7 +109,7 @@ class UserModel
                 }
 
                 // Get emails with same address
-                $email = MYSQL->query("SELECT user_email FROM purchases_user WHERE user_email=\"" . $value . "\"")->fetch_assoc();
+                $email = $mysqli->query("SELECT user_email FROM purchases_user WHERE user_email=\"" . $value . "\"")->fetch_assoc();
 
                 // Check if any result
                 if ($email) {
@@ -137,15 +139,15 @@ class UserModel
             $sql = "INSERT INTO purchases_user (user_name, user_email, user_password) VALUES ('" . $fields['user_name'] . "', '" . $fields['user_email'] . "', '" . $fields['user_password'] . "')";
 
             // Execute
-            if (MYSQL->query($sql) === FALSE) {
+            if ($mysqli->query($sql) === FALSE) {
                 echo "Error: " . $sql . "<br>";
                 // Close connection
-                MYSQL->close();
+                $mysqli->close();
                 die();
             }
 
             // Close connection
-            MYSQL->close();
+            $mysqli->close();
         } else {
             $this->handle_errors($errors);
         }
