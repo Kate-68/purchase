@@ -82,7 +82,7 @@ CREATE TABLE IF NOT EXISTS `purchases_purchase` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `purchase_name` TEXT NOT NULL,
   `purchase_date` DATE NOT NULL,
-  `puchase_amount` FLOAT NOT NULL,
+  `purchase_amount` FLOAT NOT NULL,
   `user_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_purchase_user_idx` (`user_id` ASC),
