@@ -193,6 +193,8 @@ table th {
   cursor: pointer;
 }
 
+.top-menu tr:nth-child(even){background-color: #2f4f4f;}
+
 .top-menu {
   background-color: darkslategrey;
   color: white;
